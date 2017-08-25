@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/xdzl-cloud/cloud-eureka/cloud-eureka.iml" filepath="$PROJECT_DIR$/xdzl-cloud/cloud-eureka/cloud-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xdzl-cloud/cloud-zuul/cloud-zuul.iml" filepath="$PROJECT_DIR$/xdzl-cloud/cloud-zuul/cloud-zuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xdzl-cloud/xdzl-cloud.iml" filepath="$PROJECT_DIR$/xdzl-cloud/xdzl-cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xdzl-cloud/cloud-zuul/xdzl-cloud-zuul.iml" filepath="$PROJECT_DIR$/xdzl-cloud/cloud-zuul/xdzl-cloud-zuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zlCloud.iml" filepath="$PROJECT_DIR$/zlCloud.iml" />
+    </modules>
+  </component>
+</project>

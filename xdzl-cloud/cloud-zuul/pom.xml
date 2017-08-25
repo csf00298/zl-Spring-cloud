@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.xdzl.cloud</groupId>
+	<artifactId>cloud-zuul</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>cloud-zuul</name>
+	<description>Spring cloud</description>
+
+	<parent>
+		<groupId>com.xdzl.cloud</groupId>
+		<artifactId>xdzl-cloud</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+		<main-class>com.xdzl.cloud.ZuulServer</main-class>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zuul</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
+	</dependencies>
+
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<profiles.active>dev</profiles.active>
+				<logback.log.path>E:</logback.log.path>
+				<eureka.defaultZone>
+					http://192.168.91.128:20170/eureka/,http://192.168.91.128:20171/eureka/,http://192.168.91.128:20172/eureka/
+				</eureka.defaultZone>
+			</properties>
+		</profile>
+		<profile>
+			<id>sit</id>
+			<properties>
+				<profiles.active>sit</profiles.active>
+				<logback.log.path>/data/logs/xdzl</logback.log.path>
+				<eureka.defaultZone>
+					http://192.168.91.128:20170/eureka/,http://192.168.91.128:20171/eureka/,http://192.168.91.128:20172/eureka/
+				</eureka.defaultZone>
+			</properties>
+		</profile>
+		<profile>
+			<id>production</id>
+			<properties>
+				<profiles.active>production</profiles.active>
+				<logback.log.path>/data/logs/xdzl</logback.log.path>
+				<eureka.defaultZone>
+					http://192.168.91.128:20179/eureka/,http://192.168.91.128:20180/eureka/,http://192.168.91.128:20181/eureka/
+				</eureka.defaultZone>
+			</properties>
+		</profile>
+		<profile>
+			<id>batch</id>
+			<properties>
+				<profiles.active>batch</profiles.active>
+				<logback.log.path>/data/logs/xdzl</logback.log.path>
+				<eureka.defaultZone>
+					http://192.168.91.128:20202/eureka/,http://192.168.91.128:20203/eureka/,http://192.168.91.128:20204/eureka/
+				</eureka.defaultZone>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+				<!-- 注意默认的fitler delimeter 被修改为了 @var@ -->
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+
+
+</project>

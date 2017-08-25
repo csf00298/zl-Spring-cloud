@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.xdzl.cloud</groupId>
+	<artifactId>cloud-eureka</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>cloud-eureka</name>
+	<description>cloud-eureka</description>
+
+	<parent>
+		<groupId>com.xdzl.cloud</groupId>
+		<artifactId>xdzl-cloud</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+		<main-class>com.xdzl.cloud.EurekaServer</main-class>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-netflix-eureka-server</artifactId>
+		</dependency>
+	</dependencies>
+
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<eureka.defaultZone>http://192.168.91.128:20170/eureka/</eureka.defaultZone><!-- 不指定环境 -->
+				<eureka.defaultZone1>http://192.168.91.128:20171/eureka/,http://192.168.91.128:20172/eureka/</eureka.defaultZone1><!-- 高可用，指定环境170，并注册171，172 -->
+				<eureka.defaultZone2>http://192.168.91.128:20170/eureka/,http://192.168.91.128:20172/eureka/</eureka.defaultZone2><!-- 高可用，指定环境171，并注册170，172 -->
+				<eureka.defaultZone3>http://192.168.91.128:20170/eureka/,http://192.168.91.128:20171/eureka/</eureka.defaultZone3><!-- 高可用，指定环境172，并注册171，170 -->
+				<eureka.datacenter>dev</eureka.datacenter>
+				<eureka.environment>dev</eureka.environment>
+				<server.port>18761</server.port>
+				<logback.log.path>/data/logs/xdzl</logback.log.path>
+			</properties>
+		</profile>
+		<profile>
+			<id>sit</id>
+			<properties>
+				<eureka.defaultZone>http://192.168.91.128:20170/eureka/</eureka.defaultZone><!-- 不指定环境 -->
+				<eureka.defaultZone1>http://192.168.91.128:20171/eureka/,http://192.168.91.128:20172/eureka/</eureka.defaultZone1><!-- 高可用，指定环境170，并注册171，172 -->
+				<eureka.defaultZone2>http://192.168.91.128:20170/eureka/,http://192.168.91.128:20172/eureka/</eureka.defaultZone2><!-- 高可用，指定环境171，并注册170，172 -->
+				<eureka.defaultZone3>http://192.168.91.128:20170/eureka/,http://192.168.91.128:20171/eureka/</eureka.defaultZone3><!-- 高可用，指定环境172，并注册171，170 -->
+				<eureka.environment>sit</eureka.environment>
+				<eureka.datacenter>sit</eureka.datacenter>
+				<server.port>18761</server.port>
+				<logback.log.path>/data/logs/xdzl</logback.log.path>
+			</properties>
+		</profile>
+		<profile>
+			<id>production</id>
+			<properties>
+				<eureka.defaultZone>http://192.168.91.128:20179/eureka/</eureka.defaultZone><!-- 不指定环境 -->
+				<eureka.defaultZone1>http://192.168.91.128:20180/eureka/,http://192.168.91.128:20181/eureka/</eureka.defaultZone1><!-- 高可用，指定环境170，并注册171，172 -->
+				<eureka.defaultZone2>http://192.168.91.128:20179/eureka/,http://192.168.91.128:20181/eureka/</eureka.defaultZone2><!-- 高可用，指定环境171，并注册170，172 -->
+				<eureka.defaultZone3>http://192.168.91.128:20179/eureka/,http://192.168.91.128:20180/eureka/</eureka.defaultZone3><!-- 高可用，指定环境172，并注册171，170 -->
+				<eureka.datacenter>production</eureka.datacenter>
+				<eureka.environment>production</eureka.environment>
+				<server.port>18761</server.port>
+				<logback.log.path>/data/logs/xdzl</logback.log.path>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>batch</id>
+			<properties>
+				<eureka.defaultZone>http://192.168.91.128:20202/eureka/</eureka.defaultZone><!-- 不指定环境 -->
+				<eureka.defaultZone1>http://192.168.91.128:20203/eureka/,http://192.168.91.128:20204/eureka/</eureka.defaultZone1><!-- 高可用，指定环境170，并注册171，172 -->
+				<eureka.defaultZone2>http://192.168.91.128:20202/eureka/,http://192.168.91.128:20204/eureka/</eureka.defaultZone2><!-- 高可用，指定环境171，并注册170，172 -->
+				<eureka.defaultZone3>http://192.168.91.128:20202/eureka/,http://192.168.91.128:20203/eureka/</eureka.defaultZone3><!-- 高可用，指定环境172，并注册171，170 -->
+				<eureka.datacenter>batch</eureka.datacenter>
+				<eureka.environment>batch</eureka.environment>
+				<server.port>18761</server.port>
+				<logback.log.path>/data/logs/xdzl</logback.log.path>
+			</properties>
+		</profile>
+	</profiles>
+
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+				<!-- 注意默认的fitler delimeter 被修改为了 @var@ -->
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+
+</project>
